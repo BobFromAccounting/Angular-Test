@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular Model Test</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="modelTest">
+    <div class="container">
+        <header class="page-header">
+            <h1>Angular Model Test</h1>
+        </header>
+
+        <main class="row">
+            <form class="col-md-8" novalidate name="userForm">
+                <div class="form-group" ng-class="{'has-error': userForm.first_name.$invalid && userForm.first_name.$touched, 'has-success': userForm.first_name.$valid && userForm.first_name.$touched }">
+                    <label for="first_name">First Name</label>
+                    <input class="form-control" type="text" id="first_name" ng-model="user.firstName" required maxlength="50" name="first_name">
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.last_name.$invalid && userForm.last_name.$touched, 'has-success': userForm.last_name.$valid && userForm.last_name.$touched }">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" type="text" id="last_name" ng-model="user.lastName" required maxlength="50" name="last_name">
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.email.$invalid && userForm.email.$touched, 'has-success': userForm.email.$valid && userForm.email.$touched }">
+                    <label for="email">eMail</label>
+                    <input class="form-control" type="email" id="email" ng-model="user.email" name="email" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.date_of_birth.$invalid && userForm.date_of_birth.$touched, 'has-success': userForm.date_of_birth.$valid && userForm.date_of_birth.$touched }">
+                    <label for="dob">Date of Birth</label>
+                    <input class="form-control" type="date" id="dob" ng-model="user.dateOfBirth" name="date_of_birth" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.git_url.$invalid && userForm.git_url.$touched, 'has-success': userForm.git_url.$valid && userForm.git_url.$touched }">
+                    <label for="giturl">GitHub URL</label>
+                    <input class="form-control" type="url" id="giturl" ng-model="user.gitUrl" name="git_url" required>
+                </div>
+                <div class="form-group">
+                    <label for="icon">Icon Image</label>
+                    <select class="form-control" form="userForm" ng-model="user.imageIcon">
+                        <option value="http://lorempixel.com/400/200/sports/1">Sports</option>
+                        <option value="http://lorempixel.com/400/200/nightlife/1">Nightlife</option>
+                        <option value="http://lorempixel.com/400/200/technics/1">Technical</option>
+                    </select>
+                </div>
+            </form>
+            <div class="well col-md-4">
+                <h2>Welcome!</h2>
+                <p>
+                    {{ user.firstName }} {{ user.lastName }}, thanks for signing up! We will send a confirmation email to {{ user.email }}! Date of birth: {{ user.dateOfBirth | date : 'dd'-'MM'-'yyyy' }}.
+                </p>
+                <a href="{{ user.gitUrl }}">{{ user.gitUrl }}</a>
+
+                <img class="img-responsive img-thumbnail" ng-src="{{ user.imageIcon }}">
+            </div>
+        </main>
+    </div>
+
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/modelTest.js"></script>
+</body>
+</html>
