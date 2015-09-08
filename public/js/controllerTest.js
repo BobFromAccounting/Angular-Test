@@ -21,6 +21,8 @@
                 price:    ""
             };
 
+            $('#name').focus();
+
             itemsForm.$setPristine();
             itemsForm.$setUntouched();
         };

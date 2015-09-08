@@ -15,7 +15,7 @@
                         <h3 class="panel-title">Add Item to Shopping Cart</h3>
                     </div>
                     <div class="panel-body">
-                        <form name="itemsForm" ng-submit="cc.addItem(itemsForm)" novalidate>
+                        <form name="itemsForm" id="target" ng-submit="cc.addItem(itemsForm)" novalidate>
                             <div class="form-group" ng-class="{'has-error': itemsForm.name.$invalid && itemsForm.name.$touched, 'has-success': itemsForm.name.$valid && itemsForm.name.$touched }">
                                 <label for="name">Item Name</label>
                                 <input type="text" id="name" name="name" placeholder="Item Name" class="form-control" ng-model="cc.newItem.name" required autofocus>
@@ -24,7 +24,7 @@
                                 <label for="price">Item Price</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input type="number" id="price" name="price" placeholder="ex: 8.00" class="form-control" min="0" max="1000000.00" ng-model="cc.newItem.price" required>
+                                    <input type="number" id="price" name="price" placeholder="e.g. 8.00" class="form-control" min="0" max="1000000.00" ng-model="cc.newItem.price" required>
                                 </div>
                             </div>
                             <div class="form-group" ng-if="itemsForm.$valid">
@@ -82,6 +82,6 @@
             </section>
         </main>        
         <script type="text/javascript" src="/js/angular.min.js"></script>
-        <script type="text/javascript" src="/js/controllerTest.js"></script>    
+        <script type="text/javascript" src="/js/controllerTest.js"></script>  
     </body>
 </html>
