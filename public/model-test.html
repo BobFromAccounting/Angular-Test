@@ -46,7 +46,13 @@
                 <div class="well col-md-4" ng-if="userForm.$valid">
                     <h2>Welcome!</h2>
                     <p>
-                        {{ user.firstName }} {{ user.lastName }}, thanks for signing up! We will send a confirmation email to {{ user.email }}! Date of birth: {{ user.dateOfBirth | date : 'dd'-'MM'-'yyyy' }}.
+                        <strong>Full Name: </strong>{{ user.firstName }} {{ user.lastName }}
+                    </p>
+                    <p>
+                        <strong>Email: </strong>{{ user.email }}
+                    </p>
+                    <p>
+                        <strong>Date of birth: </strong>{{ user.dateOfBirth | date : 'dd-MMM-yyyy' }}
                     </p>
                     <a href="{{ user.gitUrl }}">{{ user.gitUrl }}</a>
 

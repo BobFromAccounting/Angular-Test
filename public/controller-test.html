@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="CartTest">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shopping Cart Test</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <main class="container" ng-controller="CartController as cc">
+            <section class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Item to Shopping Cart</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name="itemsForm" ng-submit="cc.addItem(itemsForm)" novalidate>
+                            <div class="form-group" ng-class="{'has-error': itemsForm.name.$invalid && itemsForm.name.$touched, 'has-success': itemsForm.name.$valid && itemsForm.name.$touched }">
+                                <label for="name">Item Name</label>
+                                <input type="text" id="name" name="name" placeholder="Item Name" class="form-control" ng-model="cc.newItem.name" required autofocus>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': itemsForm.price.$invalid && itemsForm.price.$touched, 'has-success': itemsForm.price.$valid && itemsForm.price.$touched }">
+                                <label for="price">Item Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="number" id="price" name="price" placeholder="ex: 8.00" class="form-control" min="0" max="1000000.00" ng-model="cc.newItem.price" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="itemsForm.$valid">
+                                <button type="submit" class="btn btn-default pull-right">Add Item</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Shopping Cart</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Item Total</th>
+                            </tr>
+                            <tr ng-repeat="item in cc.items">
+                                <td>{{ item.name }}</td>
+                                <td><span id="currency-default">{{ item.price | currency }}</span></td>
+                                <td>
+                                    <select class="form-control" ng-model="item.quantity" required>
+                                        <option ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" value="{{ num }}">
+                                            {{ num }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td><span id="currency-default">{{ (item.quantity * item.price) | currency }}</span></td>
+                                <td>
+                                    <button class="btn btn-danger btn-xs" ng-click="cc.destroyItem($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="container col-md-offset-7 col-md-4">
+                            <p>
+                                <strong>subtotal: </strong><span id="currency-default">{{ cc.getSubtotal() | currency }}</span>
+                            </p>
+                            <p>
+                                <strong>tax: </strong><span id="currency-default">{{ cc.getTaxes() | currency }}</span>
+                            </p>
+                            <p>
+                                <strong>shipping: </strong><span id="currency-default">{{ cc.getShipping() | currency }}</span>
+                            </p>
+                            <p>
+                                <strong>total: </strong><span id="currency-default">{{ cc.getTotal() | currency }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>        
+        <script type="text/javascript" src="/js/angular.min.js"></script>
+        <script type="text/javascript" src="/js/controllerTest.js"></script>    
+    </body>
+</html>
