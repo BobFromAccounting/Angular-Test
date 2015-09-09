@@ -27,8 +27,8 @@
                                     <input type="number" id="price" name="price" placeholder="e.g. 8.00" class="form-control" min="0" max="1000000.00" ng-model="cc.newItem.price" required>
                                 </div>
                             </div>
-                            <div class="form-group" ng-if="itemsForm.$valid">
-                                <button type="submit" class="btn btn-default pull-right">Add Item</button>
+                            <div class="form-group">
+                                <button type="submit" ng-disabled="itemsForm.$invalid" class="btn btn-default pull-right">Add Item</button>
                             </div>
                         </form>
                     </div>
@@ -47,7 +47,7 @@
                                 <th>Quantity</th>
                                 <th>Item Total</th>
                             </tr>
-                            <tr ng-repeat="item in cc.items">
+                            <tr ng-repeat="item in cc.items" class="">
                                 <td>{{ item.name }}</td>
                                 <td><span id="currency-default">{{ item.price | currency }}</span></td>
                                 <td>

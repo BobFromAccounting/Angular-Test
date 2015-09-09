@@ -7,18 +7,14 @@
         this.items = [];
 
         this.newItem = {
-            name:     "",
-            quantity: "1",
-            price:    ""
+            quantity: "1"
         };
 
         this.addItem = function (itemsForm) {
             this.items.push(this.newItem);
 
             this.newItem = {
-                name:     "",
-                quantity: "1",
-                price:    ""
+                quantity: "1"
             };
 
             $('#name').focus();
